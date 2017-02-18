@@ -1,0 +1,106 @@
+# Laravel File Generator
+
+This package is an easy extension of the Artisan make commands provided by your Laravel application to have the ability to modify the command's stubs 
+to your personal needs and to generate fully implemented php classes (controller, requests, policies, etc.) for a specified model.
+
+## Requirements
+- [PHP](https://php.net) >= 7.0
+- An existing [Laravel 5.4](https://laravel.com/docs/master/installation) project
+
+
+## Installation
+
+1. To get started, install the package via the Composer package manager: 
+
+    ```bash
+    composer require ferdinandfrank/laravel-file-generator
+    ```
+2. Replace the entry ` Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class` within your providers array in `config/app.php`:
+ 
+     ```php
+     'providers' => [
+        ...
+        // Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        FerdinandFrank\LaravelFileGenerator\Providers\ConsoleSupportServiceProvider::class,
+        ...
+     ]
+     ```
+   
+3. Add the following entry to your providers array in `config/app.php`:
+    
+    ```php
+    'providers' => [
+       ...
+       ...
+       FerdinandFrank\LaravelFileGenerator\Providers\FileGeneratorServiceProvider::class
+    ]
+    ```
+
+That's it!
+    
+## Usage
+You can use the Artisan make commands provided by your Laravel application like always.
+For example, just execute the following command to create a new controller class with the name `UserController`:
+
+    ```bash
+    php artisan make:controller UserController
+    ```
+    
+For more details as well as a list of all available commands have a look at the section 'Commands'.    
+    
+### Publishing stub files    
+To have the benefit of this package you can execute the following command. This will publish all the stub
+files, which are used to create the php files when executing an Artisan make command.
+
+    ```bash
+    php artisan vendor:publish --tag=stubs
+    ```
+    
+By default the stub files will be copied to the `resources\stubs` folder of your application. As soon as you call
+an Artisan make command after you executed this publishing command for the stubs the stub files for generating
+a new php file will be used as the template from this folder. To modify the path to your stubs file have a look
+on the next section 'Configuration'.
+
+### Configuration
+You have the possibility to modify the path to your stub files as well as other configuration options.
+Therefore you need to publish the configuration file of this package by the following command.
+
+    ```bash
+    php artisan vendor:publish --tag=config
+    ```
+    
+This command will generate the file `laravel-file-generator.php` within your config folder of your Laravel application.
+
+## Commands
+
+### ConsoleMakeCommand
+Command to create a new Artisan command.
+
+    ```bash
+    php artisan make:command [options] [--] <name>
+    ```
+#### Arguments
+| Argument  | Description             | Note     |
+| --------- |:-----------------------:| --------:|
+| name      | The name of the command | Required |
+
+#### Options
+| Option               | Description                                   | Default      |
+| -------------------- |:---------------------------------------------:| ------------:|
+| --command[=COMMAND]  | The terminal command that should be assigned  | command:name |
+| -h, --help           | Display a help message                        |              |
+| -q, --quiet          | Do not output any message                     |              |
+| -V, --version        | Display this application version              |              |
+|     --ansi           | Force ANSI output                             |              |
+|    --no-ansi         | Disable ANSI output                           |              |
+| -n, --no-interaction | Do not ask any interactive question           |              |
+|     --env[=ENV]      | The environment the command should run under  |              |
+| -v|vv|vvv, --verbose | Increase the verbosity of messages            |              |
+
+#### Stubs
+| Stub         | Command Restriction  |         
+| ------------ |:--------------------:|
+| console.stub | Always used          | 
+
+## License
+[MIT](LICENSE)

@@ -1,0 +1,114 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullModelClass;
+use Illuminate\Http\Request;
+
+/**
+ * DummyClass
+ * -----------------------
+ * Controller to handle the DummyModelVariable routes.
+ * -----------------------
+ *
+ * @author  Ferdinand Frank
+ * @version 1.0
+ * @package DummyNamespace
+ */
+class DummyClass extends Controller
+{
+
+    /**
+     * Display a listing of all the DummyModelPlural.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('DummyModelVariable.index');
+    }
+
+    /**
+     * Display the specified DummyModelVariable.
+     *
+     * @param DummyModelClass $DummyModelVariable
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(DummyModelClass $DummyModelVariable)
+    {
+        return view('DummyModelVariable.show', compact('DummyModelVariable'));
+    }
+
+    /**
+     * Show the form for creating a new DummyModelVariable.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('DummyModelVariable.create');
+    }
+
+    /**
+     * Show the form for editing the specified DummyModelVariable.
+     *
+     * @param DummyModelClass $DummyModelVariable
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(DummyModelClass $DummyModelVariable)
+    {
+        return view('DummyModelVariable.edit', compact('DummyModelVariable'));
+    }
+
+    /**
+     * Create a new DummyModelVariable with the data from the specified request and
+     * stores the DummyModelVariable in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $DummyModelVariable = DummyModelClass::create($request->all());
+
+        return response()->json($DummyModelVariable, empty($DummyModelVariable) ? 500 : 200);
+    }
+
+    /**
+     * Update the specified DummyModelVariable with the specified request data in the database.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @param DummyModelClass $DummyModelVariable
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, DummyModelClass $DummyModelVariable)
+    {
+        if ($DummyModelVariable->update($request->all())) {
+            return response()->json($DummyModelVariable);
+        }
+
+        return response()->json($DummyModelVariable, 500);
+    }
+
+    /**
+     * Remove the specified DummyModelVariable from the database.
+     *
+     * @param  \DummyFullModelClass  $DummyModelVariable
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(DummyModelClass $DummyModelVariable)
+    {
+        if ($DummyModelVariable->delete()) {
+            return response()->json($DummyModelVariable);
+        }
+
+        return response()->json($DummyModelVariable, 500);
+    }
+
+}
+

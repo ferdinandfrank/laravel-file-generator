@@ -1,0 +1,72 @@
+<?php
+
+namespace DummyNamespace;
+
+use UserModelNamespace;
+use NamespacedDummyModel;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+/**
+ * DummyClass
+ * -----------------------
+ * Handles the permissions on the dummyModel model.
+ *
+ * @author  Ferdinand Frank
+ * @version 1.0
+ * @package DummyNamespace
+ */
+class DummyClass
+{
+
+    use HandlesAuthorization;
+
+    /**
+     * Determines whether the user can view the specified dummyModel.
+     *
+     * @param  User  $loggedUser
+     * @param  DummyModel  $dummyModel
+     *
+     * @return boolean
+     */
+    public function view(User $loggedUser, DummyModel $dummyModel)
+    {
+        return true;
+    }
+
+    /**
+     * Determines whether the user can create dummyPluralModel.
+     *
+     * @param  User  $loggedUser
+     * @return boolean
+     */
+    public function create(User $loggedUser)
+    {
+        return true;
+    }
+
+    /**
+     * Determines whether the user can update the specified dummyModel.
+     *
+     * @param  User  $loggedUser
+     * @param  DummyModel  $dummyModel
+     *
+     * @return boolean
+     */
+    public function update(User $loggedUser, DummyModel $dummyModel)
+    {
+        return true;
+    }
+
+    /**
+     * Determines whether the user can delete the specified dummyModel.
+     *
+     * @param  User  $loggedUser
+     * @param  DummyModel  $dummyModel
+     *
+     * @return boolean
+     */
+    public function delete(User $loggedUser, DummyModel $dummyModel)
+    {
+        return true;
+    }
+}

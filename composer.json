@@ -1,0 +1,29 @@
+{
+    "name": "ferdinandfrank/laravel-file-generator",
+    "description": "An easy extension of the Artisan make commands to modify the command's stubs and to generate fully implemented php files.",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "make",
+        "command",
+        "stubs",
+        "controller",
+        "generate"
+    ],
+    "authors": [
+        {
+            "name": "Ferdinand Frank",
+            "email": "ferdinand-frank@web.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "5.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "EpicArrow\\VueForms\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
