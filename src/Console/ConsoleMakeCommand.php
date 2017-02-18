@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * ConsoleMakeCommand
  * -----------------------
- * Command to create a new console command.
+ * Command to create a new Artisan command.
  *
  * @author  Ferdinand Frank
  * @version 1.0

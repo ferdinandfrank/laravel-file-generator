@@ -79,7 +79,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
                 'implement',
                 'i',
                 InputOption::VALUE_OPTIONAL,
-                'Generate a fully implemented controller class for the specified model class.'
+                'Generate an implemented controller for the given model.'
             ]
         ]);
     }
