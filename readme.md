@@ -44,7 +44,7 @@ For example, just execute the following command to create a new controller class
 
     php artisan make:controller UserController
     
-For more details as well as a list of all available commands have a look at the section 'Commands'.    
+For more details as well as a list of all available commands have a look at the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki).    
     
 ### Publishing stub files    
 To have the benefit of this package you can execute the following command. This will publish all the stub
@@ -66,35 +66,7 @@ Therefore you need to publish the configuration file of this package by the foll
 This command will generate the file `laravel-file-generator.php` within your config folder of your Laravel application.
 
 ## Commands
-
-### ConsoleMakeCommand
-Creates a new Artisan command.
-
-    ```
-    php artisan make:command [options] [--] <name>
-    ```
-#### Arguments
-| Argument  | Description             | Note     |
-| --------- | ----------------------- | -------- |
-| name      | The name of the command | Required |
-
-#### Options
-| Option                         | Description                                   | Default      |
-| ------------------------------ | --------------------------------------------- | ------------ |
-| --command[=COMMAND]            | The terminal command that should be assigned  | command:name |
-| -h, --help                     | Display a help message                        |              |
-| -q, --quiet                    | Do not output any message                     |              |
-| -V, --version                  | Display this application version              |              |
-|     --ansi                     | Force ANSI output                             |              |
-|    --no-ansi                   | Disable ANSI output                           |              |
-| -n, --no-interaction           | Do not ask any interactive question           |              |
-|     --env[=ENV]                | The environment the command should run under  |              |
-| -v&#124;vv&#124;vvv, --verbose | Increase the verbosity of messages            |              |
-
-#### Stubs
-| Stub         | Command Restriction  |         
-| ------------ | -------------------- |
-| console.stub | Always used          | 
+You can see all details and documentation about the available make commands on the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki). 
 
 ## License
 [MIT](LICENSE)
