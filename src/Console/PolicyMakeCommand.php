@@ -51,10 +51,12 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
      */
     protected function buildClass($name) {
         $model = $this->option('model');
-        $policy = "\\$model::class => \\$name::class,";
-        $authProviderFile = config('policies_provider_path', app_path('Providers/AuthServiceProvider.php'));
-        $insert_marker = 'protected $policies = [';
-        $this->insertIntoFile($authProviderFile, $insert_marker, "$insert_marker\r\n\t\t$policy");
+        if (!empty($model)) {
+            $policy = "\\$model::class => \\$name::class,";
+            $authProviderFile = config('policies_provider_path', app_path('Providers/AuthServiceProvider.php'));
+            $insert_marker = 'protected $policies = [';
+            $this->insertIntoFile($authProviderFile, $insert_marker, "$insert_marker\r\n\t\t$policy");
+        }
 
         return parent::buildClass($name);
     }
