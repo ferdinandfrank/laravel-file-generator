@@ -3,6 +3,8 @@
 namespace FerdinandFrank\LaravelFileGenerator\Console;
 
 use FerdinandFrank\LaravelFileGenerator\StubHelper;
+use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -64,6 +66,29 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
         );
+    }
+
+    /**
+     * Gets the fully-qualified model class name.
+     *
+     * @param $model
+     *
+     * @return string
+     */
+    protected function parseModel($model) {
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
+            throw new InvalidArgumentException('Model name contains invalid characters.');
+        }
+
+        $model = trim(str_replace('/', '\\', $model), '\\');
+
+        $rootNamespace = trim($this->rootNamespace(), '\\');
+        $namespace = $rootNamespace . config('laravel-file-generator.namespaces.model') . '\\';
+        if (!Str::startsWith($model, $namespace)) {
+            $model = $namespace . $model;
+        }
+
+        return $model;
     }
 
     /**

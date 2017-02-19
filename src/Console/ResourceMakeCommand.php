@@ -75,6 +75,25 @@ class ResourceMakeCommand extends GeneratorCommand {
     }
 
     /**
+     * Parse the class name and format according to the root namespace.
+     *
+     * @param  string $name
+     *
+     * @return string
+     */
+    protected function qualifyClass($name) {
+        $defaultNamespace = $this->getDefaultNamespace(trim($this->rootNamespace(), '\\'));
+
+        if (Str::startsWith($name, $defaultNamespace)) {
+            return $name;
+        }
+
+        $name = class_basename($name);
+
+        return $this->qualifyClass($defaultNamespace . '\\' . $name);
+    }
+
+    /**
      * Build the class with the given name.
      * Remove the base controller import if we are already in base namespace.
      *
@@ -104,7 +123,7 @@ class ResourceMakeCommand extends GeneratorCommand {
 
         // Write routes corresponding to the controller functions
         $webRoutesFile = config('web_routes_file_path', base_path('routes/web.php'));
-        $routes = "Route::resource('" . $pluralModelVar . "', '" . $this->getNameInput() . "');";
+        $routes = "Route::resource('" . $pluralModelVar . "', '" . class_basename($this->getNameInput()) . "');";
         file_put_contents($webRoutesFile, "\r\n" . $routes, FILE_APPEND);
 
         $replace = [
@@ -130,15 +149,16 @@ class ResourceMakeCommand extends GeneratorCommand {
      * @return string
      */
     private function parseModel($model) {
-
         if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
             throw new InvalidArgumentException('Model name contains invalid characters.');
         }
 
         $model = trim(str_replace('/', '\\', $model), '\\');
 
-        if (!Str::startsWith($model, $rootNamespace = config('laravel-file-generator.namespaces.model', $this->laravel->getNamespace()))) {
-            $model = $rootNamespace . $model;
+        $rootNamespace = trim($this->rootNamespace(), '\\');
+        $namespace = $rootNamespace . config('laravel-file-generator.namespaces.model') . '\\';
+        if (!Str::startsWith($model, $namespace)) {
+            $model = $namespace . $model;
         }
 
         return $model;

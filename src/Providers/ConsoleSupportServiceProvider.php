@@ -2,6 +2,9 @@
 
 namespace FerdinandFrank\LaravelFileGenerator\Providers;
 
+use Illuminate\Database\MigrationServiceProvider;
+use Illuminate\Foundation\Providers\ComposerServiceProvider;
+
 /**
  * ConsoleSupportServiceProvider
  * -----------------------
@@ -20,11 +23,8 @@ class ConsoleSupportServiceProvider extends \Illuminate\Foundation\Providers\Con
      */
     protected $providers = [
         ArtisanServiceProvider::class,
-        'Illuminate\Console\ScheduleServiceProvider',
-        'Illuminate\Database\MigrationServiceProvider',
-        'Illuminate\Database\SeedServiceProvider',
-        'Illuminate\Foundation\Providers\ComposerServiceProvider',
-        'Illuminate\Queue\ConsoleServiceProvider',
+        MigrationServiceProvider::class,
+        ComposerServiceProvider::class,
     ];
 
 }

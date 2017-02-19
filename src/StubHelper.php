@@ -42,21 +42,23 @@ class StubHelper {
 
         // Check if the stub file/folder is found on the specified path of the user or on the default stubs path
         $path = self::getStubsFolderPath();
-        if (file_exists($path . $stubFile ?? '')) {
-            return $path . $stubFile ?? '';
+
+        $stubFile = empty($stubFile) ? '' : $stubFile;
+        if (file_exists($path . $stubFile)) {
+            return $path . $stubFile;
         }
 
         // Check if the stub file/folder is found on the package's stub folder
         $path = __DIR__ . '/../resources/stubs/';
-        if (file_exists($path . $stubFile ?? '')) {
-            return $path . $stubFile ?? '';
+        if (file_exists($path . $stubFile)) {
+            return $path . $stubFile;
         }
 
         // Check if the stub file/folder is found on the framework paths
         foreach (self::$STUB_FRAMEWORK_PATHS as $stubPath) {
             $path = base_path(self::$FRAMEWORK_PATH . $stubPath);
-            if (file_exists($path . $stubFile ?? '')) {
-                return $path . $stubFile ?? '';
+            if (file_exists($path . $stubFile)) {
+                return $path . $stubFile;
             }
         }
 
