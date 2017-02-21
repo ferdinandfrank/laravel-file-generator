@@ -1,5 +1,6 @@
 # Laravel File Generator
 [![Packagist Version](https://img.shields.io/packagist/v/ferdinandfrank/laravel-file-generator.svg)](https://packagist.org/packages/ferdinandfrank/laravel-file-generator)
+[![Packagist](https://img.shields.io/packagist/dt/ferdinandfrank/laravel-file-generator.svg)](https://github.com/ferdinandfrank/laravel-file-generator)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 This package is an easy extension of the Artisan make commands provided by your Laravel application to have the ability to modify the command's stubs 
