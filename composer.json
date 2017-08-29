@@ -26,5 +26,12 @@
             "FerdinandFrank\\LaravelFileGenerator\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FerdinandFrank\\LaravelFileGenerator\\Providers\\FileGeneratorServiceProvider"
+            ]
+        }
+    }
 }
