@@ -31,7 +31,7 @@ class EventMakeCommand extends \Illuminate\Foundation\Console\EventMakeCommand {
                 'model',
                 'm',
                 InputOption::VALUE_OPTIONAL,
-                'Generate an implemented event for the given model.'
+                'Generate an implemented event for the given model'
             ]
         ]);
     }
