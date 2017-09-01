@@ -3,6 +3,7 @@
 namespace FerdinandFrank\LaravelFileGenerator\Providers;
 
 use FerdinandFrank\LaravelFileGenerator\Console\ControllerMakeCommand;
+use FerdinandFrank\LaravelFileGenerator\Console\EventGenerateCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\PolicyMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ConsoleMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\EventMakeCommand;
@@ -35,31 +36,31 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
      * @var array
      */
     protected $devCommands = [
-        'AppName' => 'command.app.name',
-        'AuthMake' => 'command.auth.make',
-        'CacheTable' => 'command.cache.table',
-        'ConsoleMake' => 'command.console.make',
-        'ControllerMake' => 'command.controller.make',
-        'EventGenerate' => 'command.event.generate',
-        'EventMake' => 'command.event.make',
-        'JobMake' => 'command.job.make',
-        'ListenerMake' => 'command.listener.make',
-        'MailMake' => 'command.mail.make',
-        'MiddlewareMake' => 'command.middleware.make',
-        'ModelMake' => 'command.model.make',
-        'NotificationMake' => 'command.notification.make',
+        'AppName'           => 'command.app.name',
+        'AuthMake'          => 'command.auth.make',
+        'CacheTable'        => 'command.cache.table',
+        'ConsoleMake'       => 'command.console.make',
+        'ControllerMake'    => 'command.controller.make',
+        'EventGenerate'     => 'command.event.generate',
+        'EventMake'         => 'command.event.make',
+        'JobMake'           => 'command.job.make',
+        'ListenerMake'      => 'command.listener.make',
+        'MailMake'          => 'command.mail.make',
+        'MiddlewareMake'    => 'command.middleware.make',
+        'ModelMake'         => 'command.model.make',
+        'NotificationMake'  => 'command.notification.make',
         'NotificationTable' => 'command.notification.table',
-        'PolicyMake' => 'command.policy.make',
-        'ProviderMake' => 'command.provider.make',
-        'QueueFailedTable' => 'command.queue.failed-table',
-        'QueueTable' => 'command.queue.table',
-        'RequestMake' => 'command.request.make',
-        'SeederMake' => 'command.seeder.make',
-        'SessionTable' => 'command.session.table',
-        'Serve' => 'command.serve',
-        'TestMake' => 'command.test.make',
-        'VendorPublish' => 'command.vendor.publish',
-        'ResourceMake' => 'command.resource.make'
+        'PolicyMake'        => 'command.policy.make',
+        'ProviderMake'      => 'command.provider.make',
+        'QueueFailedTable'  => 'command.queue.failed-table',
+        'QueueTable'        => 'command.queue.table',
+        'RequestMake'       => 'command.request.make',
+        'SeederMake'        => 'command.seeder.make',
+        'SessionTable'      => 'command.session.table',
+        'Serve'             => 'command.serve',
+        'TestMake'          => 'command.test.make',
+        'VendorPublish'     => 'command.vendor.publish',
+        'ResourceMake'      => 'command.resource.make'
     ];
 
     /**
@@ -92,6 +93,17 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
     protected function registerConsoleMakeCommand() {
         $this->app->singleton('command.console.make', function ($app) {
             return new ConsoleMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerEventGenerateCommand() {
+        $this->app->singleton('command.event.generate', function () {
+            return new EventGenerateCommand;
         });
     }
 

@@ -1,0 +1,52 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullModelClass;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+/**
+ * DummyClass
+ * -----------------------
+ * Event class for the DummyModelClass model.
+ * -----------------------
+ *
+ * @author  Ferdinand Frank
+ * @version 1.0
+ * @package DummyNamespace
+ */
+class DummyClass
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    /**
+     * The DummyModelVariable for the event.
+     *
+     * @var DummyModelClass
+     */
+    public $DummyModelVariable;
+
+    /**
+     * Create a new event instance.
+     *
+     * @param DummyModelClass $DummyModelVariable
+     */
+    public function __construct(DummyModelClass $DummyModelVariable) {
+        $this->DummyModelVariable = $DummyModelVariable;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn() {
+        return new PrivateChannel('channel-name');
+    }
+}
