@@ -59,6 +59,7 @@ return [
         'middleware'   => '\Http\Middleware',
         'model'        => '\Models',
         'notification' => '\Notifications',
+        'observer'     => '\Observers',
         'policy'       => '\Policies',
         'provider'     => '\Providers',
         'request'      => '\Http\Requests',

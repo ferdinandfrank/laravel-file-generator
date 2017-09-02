@@ -4,6 +4,7 @@ namespace FerdinandFrank\LaravelFileGenerator\Providers;
 
 use FerdinandFrank\LaravelFileGenerator\Console\ControllerMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\EventGenerateCommand;
+use FerdinandFrank\LaravelFileGenerator\Console\ObserverMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\PolicyMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ConsoleMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\EventMakeCommand;
@@ -49,6 +50,7 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
         'MiddlewareMake'    => 'command.middleware.make',
         'ModelMake'         => 'command.model.make',
         'NotificationMake'  => 'command.notification.make',
+        'ObserverMake'      => 'command.observer.make',
         'NotificationTable' => 'command.notification.table',
         'PolicyMake'        => 'command.policy.make',
         'ProviderMake'      => 'command.provider.make',
@@ -181,6 +183,17 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
     protected function registerNotificationMakeCommand() {
         $this->app->singleton('command.notification.make', function ($app) {
             return new NotificationMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerObserverMakeCommand() {
+        $this->app->singleton('command.observer.make', function ($app) {
+            return new ObserverMakeCommand($app['files']);
         });
     }
 

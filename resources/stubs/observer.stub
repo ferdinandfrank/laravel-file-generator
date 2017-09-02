@@ -1,0 +1,48 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullModelClass;
+
+/**
+ * DummyClass
+ * -----------------------
+ * Observes the events on the DummyModelClass model.
+ *
+ * @author  Ferdinand Frank
+ * @version 1.0
+ * @package DummyNamespace
+ */
+class DummyClass
+{
+
+    /**
+     * Listen to the DummyModelClass created event.
+     *
+     * @param  DummyModelClass  $DummyModelVariable
+     */
+    public function created(DummyModelClass $DummyModelVariable)
+    {
+        //
+    }
+
+    /**
+     * Listen to the DummyModelClass updated event.
+     *
+     * @param  DummyModelClass  $DummyModelVariable
+     */
+    public function updated(DummyModelClass $DummyModelVariable)
+    {
+        //
+    }
+
+    /**
+     * Listen to the DummyModelClass deleting event.
+     *
+     * @param  DummyModelClass  $DummyModelVariable
+     */
+    public function deleting(DummyModelClass $DummyModelVariable)
+    {
+        //
+    }
+}

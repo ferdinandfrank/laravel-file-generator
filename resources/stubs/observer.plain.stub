@@ -1,0 +1,40 @@
+<?php
+
+namespace DummyNamespace;
+
+/**
+ * DummyClass
+ * -----------------------
+ * Observes events.
+ *
+ * @author  Ferdinand Frank
+ * @version 1.0
+ * @package DummyNamespace
+ */
+class DummyClass
+{
+
+    /**
+     * Listen to the created event.
+     */
+    public function created()
+    {
+        //
+    }
+
+    /**
+     * Listen to the updated event.
+     */
+    public function updated()
+    {
+        //
+    }
+
+    /**
+     * Listen to the deleting event.
+     */
+    public function deleting()
+    {
+        //
+    }
+}
