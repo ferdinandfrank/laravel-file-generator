@@ -2,7 +2,6 @@
 
 namespace FerdinandFrank\LaravelFileGenerator\Providers;
 
-use Illuminate\Database\MigrationServiceProvider;
 use Illuminate\Foundation\Providers\ComposerServiceProvider;
 
 /**

@@ -19,6 +19,7 @@ use FerdinandFrank\LaravelFileGenerator\Console\RequestMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ResourceMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\SeederMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\TestMakeCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 
 /**
  * ArtisanServiceProvider
@@ -48,6 +49,7 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
         'ListenerMake'      => 'command.listener.make',
         'MailMake'          => 'command.mail.make',
         'MiddlewareMake'    => 'command.middleware.make',
+        'MigrateMake'       => 'command.migrate.make',
         'ModelMake'         => 'command.model.make',
         'NotificationMake'  => 'command.notification.make',
         'ObserverMake'      => 'command.observer.make',
@@ -161,6 +163,24 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
     protected function registerMiddlewareMakeCommand() {
         $this->app->singleton('command.middleware.make', function ($app) {
             return new MiddlewareMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMigrateMakeCommand() {
+        $this->app->singleton('command.migrate.make', function ($app) {
+            // Once we have the migration creator registered, we will create the command
+            // and inject the creator. The creator is responsible for the actual file
+            // creation of the migrations, and may be extended by these developers.
+            $creator = $app['migration.creator'];
+
+            $composer = $app['composer'];
+
+            return new MigrateMakeCommand($creator, $composer);
         });
     }
 
