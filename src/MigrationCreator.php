@@ -30,7 +30,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator 
         else {
             $stub = $create ? 'migration.create.stub' : 'migration.update.stub';
 
-            return $this->files->get(StubHelper::find("/#{$stub}"));
+            return $this->files->get(StubHelper::find("/$stub"));
         }
     }
 }
