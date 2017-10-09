@@ -8,7 +8,7 @@ to your personal needs and to generate fully implemented php classes (controller
 
 ## Requirements
 - [PHP](https://php.net) >=5.6.4
-- An existing [Laravel 5.4](https://laravel.com/docs/master/installation) project
+- An existing >= [Laravel 5.4](https://laravel.com/docs/master/installation) project
 
 
 ## Installation
@@ -50,8 +50,8 @@ For example, just execute the following command to create a new controller class
 For more details as well as a list of all available commands have a look at the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki).    
     
 ### Publishing stub files    
-To have the benefit of this package you can execute the following command. This will publish all the stub
-files, which are used to create the php files when executing an Artisan make command.
+To have the full benefits of this package you can execute the following command. This will publish all the stub
+files which are used to create the php files when executing an Artisan make command.
 
     php artisan vendor:publish --tag=stubs
     
