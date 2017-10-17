@@ -71,5 +71,7 @@ This command will generate the file `laravel-file-generator.php` within your con
 ## Commands
 You can see all details and documentation about the available make commands on the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki). 
 
+**Important:** Laravel's native command `make:resource` is represented by the command `make:api-resource` in this package.
+
 ## License
 [MIT](LICENSE)
