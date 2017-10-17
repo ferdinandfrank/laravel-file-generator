@@ -2,6 +2,7 @@
 
 namespace FerdinandFrank\LaravelFileGenerator\Providers;
 
+use FerdinandFrank\LaravelFileGenerator\Console\ApiResourceMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ControllerMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\EventGenerateCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ObserverMakeCommand;
@@ -38,6 +39,7 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
      * @var array
      */
     protected $devCommands = [
+        'ApiResourceMake'   => 'command.api-resource.make',
         'AppName'           => 'command.app.name',
         'AuthMake'          => 'command.auth.make',
         'CacheTable'        => 'command.cache.table',
@@ -66,6 +68,17 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
         'VendorPublish'     => 'command.vendor.publish',
         'ResourceMake'      => 'command.resource.make'
     ];
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerApiResourceMakeCommand() {
+        $this->app->singleton('command.api-resource.make', function ($app) {
+            return new ApiResourceMakeCommand($app['files']);
+        });
+    }
 
     /**
      * Register the command.
