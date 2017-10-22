@@ -4,6 +4,7 @@ namespace FerdinandFrank\LaravelFileGenerator\Console;
 
 use FerdinandFrank\LaravelFileGenerator\StubHelper;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 /**
  * PolicyMakeCommand
@@ -53,7 +54,8 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
         $model = $this->option('model');
         if (!empty($model)) {
             $policy = "\\$model::class => \\$name::class,";
-            $authProviderFile = config('policies_provider_path', app_path('Providers/AuthServiceProvider.php'));
+            $authProviderFile =
+                config('laravel-file-generator.policies_provider_path', app_path('Providers/AuthServiceProvider.php'));
             $insert_marker = 'protected $policies = [';
             $this->insertIntoFile($authProviderFile, $insert_marker, "$insert_marker\r\n\t\t$policy");
         }
@@ -64,10 +66,10 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
     /**
      * Insert arbitrary text into any place inside a text file
      *
-     * @param string $file_path - absolute path to the file
+     * @param string $file_path     - absolute path to the file
      * @param string $insert_marker - a marker inside the file to
      *                              look for as a pattern match
-     * @param string $text - text to be inserted
+     * @param string $text          - text to be inserted
      *
      * @return integer - the number of bytes written to the file
      */
@@ -87,28 +89,44 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
      * @return string
      */
     protected function replaceModel($stub, $model) {
-        $model = str_replace('/', '\\', $model);
+        $fullModel = $this->parseModel($model);
+        $model = class_basename($fullModel);
 
-        if (!Str::startsWith($model, $this->laravel->getNamespace())) {
-            $stub = str_replace('NamespacedDummyModel', $this->laravel->getNamespace() . $model, $stub);
-        } else {
-            $stub = str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);
-        }
-
-        $model = class_basename(trim($model, '\\'));
-
+        $stub = str_replace('NamespacedDummyModel', $fullModel, $stub);
         $stub = str_replace('DummyModel', $model, $stub);
 
         if ($model == 'User') {
             $stub = str_replace('use UserModelNamespace;', '', $stub);
         } else {
-            $userNamespace = str_replace('/', '\\', 'App' . config('laravel-file-generator.namespaces.model', '\\') . 'User');
-            $stub = str_replace('UserModelNamespace', $userNamespace, $stub);
+            $fullUserModel = $this->parseModel('User');
+            $stub = str_replace('UserModelNamespace', $fullUserModel, $stub);
         }
-
 
         $stub = str_replace('dummyModel', Str::camel($model), $stub);
 
         return str_replace('dummyPluralModel', Str::plural(Str::camel($model)), $stub);
+    }
+
+    /**
+     * Gets the fully-qualified model class name.
+     *
+     * @param $model
+     *
+     * @return string
+     */
+    protected function parseModel($model) {
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
+            throw new InvalidArgumentException('Model name contains invalid characters.');
+        }
+
+        $model = trim(str_replace('/', '\\', $model), '\\');
+
+        $rootNamespace = trim($this->rootNamespace(), '\\');
+        $namespace = $rootNamespace . config('laravel-file-generator.namespaces.model') . '\\';
+        if (!Str::startsWith($model, $namespace)) {
+            $model = $namespace . $model;
+        }
+
+        return $model;
     }
 }
