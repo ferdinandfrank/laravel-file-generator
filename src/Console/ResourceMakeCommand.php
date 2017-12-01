@@ -116,10 +116,13 @@ class ResourceMakeCommand extends GeneratorCommand {
         $pluralModelVar = str_plural($modelVar);
         $requestClass = $baseModelClass . 'CreateRequest';
         $policyClass = $baseModelClass . 'Policy';
+        $resourceClass = $baseModelClass . 'Resource';
+        $resourceCollectionClass = $resourceClass . 'Collection';
 
         $this->call('make:policy', ['name' => $policyClass, '--model' => $fullModelClass]);
         $this->call('make:request', ['name' => $requestClass, '--model' => $fullModelClass]);
-
+        $this->call('make:api-resource', ['name' => $resourceClass]);
+        $this->call('make:api-resource', ['name' => $resourceCollectionClass]);
 
         // Write routes corresponding to the controller functions
         $webRoutesFile = config('web_routes_file_path', base_path('routes/web.php'));
