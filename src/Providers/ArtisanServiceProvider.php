@@ -5,6 +5,8 @@ namespace FerdinandFrank\LaravelFileGenerator\Providers;
 use FerdinandFrank\LaravelFileGenerator\Console\ApiResourceMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ControllerMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\EventGenerateCommand;
+use FerdinandFrank\LaravelFileGenerator\Console\ExceptionMakeCommand;
+use FerdinandFrank\LaravelFileGenerator\Console\FactoryMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ObserverMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\PolicyMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ConsoleMakeCommand;
@@ -18,6 +20,7 @@ use FerdinandFrank\LaravelFileGenerator\Console\NotificationMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ProviderMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\RequestMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\ResourceMakeCommand;
+use FerdinandFrank\LaravelFileGenerator\Console\RuleMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\SeederMakeCommand;
 use FerdinandFrank\LaravelFileGenerator\Console\TestMakeCommand;
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
@@ -143,6 +146,28 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
      *
      * @return void
      */
+    protected function registerExceptionMakeCommand() {
+        $this->app->singleton('command.exception.make', function ($app) {
+            return new ExceptionMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerFactoryMakeCommand() {
+        $this->app->singleton('command.factory.make', function ($app) {
+            return new FactoryMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerJobMakeCommand() {
         $this->app->singleton('command.job.make', function ($app) {
             return new JobMakeCommand($app['files']);
@@ -252,6 +277,17 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
     protected function registerRequestMakeCommand() {
         $this->app->singleton('command.request.make', function ($app) {
             return new RequestMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRuleMakeCommand() {
+        $this->app->singleton('command.rule.make', function ($app) {
+            return new RuleMakeCommand($app['files']);
         });
     }
 

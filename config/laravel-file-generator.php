@@ -53,6 +53,7 @@ return [
         'console'      => '\Console\Commands',
         'controller'   => '\Http\Controllers',
         'event'        => '\Events',
+        'exception'    => '\Exceptions',
         'job'          => '\Jobs',
         'listener'     => '\Listeners',
         'mail'         => '\Mail',
@@ -63,6 +64,7 @@ return [
         'policy'       => '\Policies',
         'provider'     => '\Providers',
         'request'      => '\Http\Requests',
+        'rules'        => '\Rules',
         'seeder'       => '',
         'test'         => ''
     ],
