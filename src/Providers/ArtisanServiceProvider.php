@@ -47,6 +47,8 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
         'ControllerMake'    => 'command.controller.make',
         'EventGenerate'     => 'command.event.generate',
         'EventMake'         => 'command.event.make',
+        'ExceptionMake'     => 'command.exception.make',
+        'FactoryMake'       => 'command.factory.make',
         'JobMake'           => 'command.job.make',
         'ListenerMake'      => 'command.listener.make',
         'MailMake'          => 'command.mail.make',
@@ -61,12 +63,13 @@ class ArtisanServiceProvider extends \Illuminate\Foundation\Providers\ArtisanSer
         'QueueFailedTable'  => 'command.queue.failed-table',
         'QueueTable'        => 'command.queue.table',
         'RequestMake'       => 'command.request.make',
+        'ResourceMake'      => 'command.resource.make',
+        'RuleMake'          => 'command.rule.make',
         'SeederMake'        => 'command.seeder.make',
         'SessionTable'      => 'command.session.table',
         'Serve'             => 'command.serve',
         'TestMake'          => 'command.test.make',
-        'VendorPublish'     => 'command.vendor.publish',
-        'ResourceMake'      => 'command.resource.make'
+        'VendorPublish'     => 'command.vendor.publish'
     ];
 
     /**

@@ -7,9 +7,10 @@ This package is an easy extension of the Artisan make commands provided by your 
 to your personal needs and to generate fully implemented php classes (controller, requests, policies, etc.) for a specified model.
 
 ## Requirements
-- [PHP](https://php.net) >=5.6.4
-- An existing >= [Laravel 5.4](https://laravel.com/docs/master/installation) project
+- [PHP](https://php.net) >=7.0.0
+- An existing >= [Laravel 5.5](https://laravel.com/docs/master/installation) project
 
+Note: For Laravel 5.4 see version 1.0
 
 ## Installation
 
