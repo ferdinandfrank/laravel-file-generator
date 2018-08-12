@@ -102,7 +102,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         return array_merge($options, [
             [
                 'implement',
-                'i',
+                null,
                 InputOption::VALUE_OPTIONAL,
                 'Generate an implemented controller for the given model.'
             ]
