@@ -27,6 +27,7 @@ class StubHelper {
      */
     private static $STUB_FRAMEWORK_PATHS = [
         'Illuminate/Database/Console/Seeds/stubs/',
+        'Illuminate/Database/Console/Factories/stubs/',
         'Illuminate/Foundation/Console/stubs/',
         'Illuminate/Routing/Console/stubs/'
     ];
