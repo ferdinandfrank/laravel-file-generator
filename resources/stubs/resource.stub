@@ -2,137 +2,18 @@
 
 namespace DummyNamespace;
 
-use DummyFullModelClass;
-use App\Http\Requests\DummyRequestClass;
+use Illuminate\Http\Resources\Json\Resource;
 
-/**
- * DummyClass
- * -----------------------
- * Controller to handle the DummyModelVariable routes.
- * -----------------------
- *
- * @author  Ferdinand Frank
- * @version 1.0
- * @package DummyNamespace
- */
-class DummyClass extends Controller
+class DummyClass extends Resource
 {
-
     /**
-     * Display a listing of all the DummyModelPlural.
+     * Transform the resource into an array.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request
+     * @return array
      */
-    public function index()
+    public function toArray($request)
     {
-        return view('DummyModelVariable.index');
+        return parent::toArray($request);
     }
-
-    /**
-     * Display the specified DummyModelVariable.
-     *
-     * @param DummyModelClass $DummyModelVariable
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DummyModelClass $DummyModelVariable)
-    {
-        if (\Gate::denies('view', $DummyModelVariable)) {
-            abort(404, 'Page not found.');
-        }
-
-        return view('DummyModelVariable.show', compact('DummyModelVariable'));
-    }
-
-    /**
-     * Show the form for creating a new DummyModelVariable.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        if (\Gate::denies('create', DummyModelClass::class)) {
-            abort(404, 'Page not found.');
-        }
-
-        return view('DummyModelVariable.create');
-    }
-
-    /**
-     * Show the form for editing the specified DummyModelVariable.
-     *
-     * @param DummyModelClass $DummyModelVariable
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DummyModelClass $DummyModelVariable)
-    {
-        if (\Gate::denies('update', $DummyModelVariable)) {
-            abort(404, 'Page not found.');
-        }
-
-        return view('DummyModelVariable.edit', compact('DummyModelVariable'));
-    }
-
-    /**
-     * Create a new DummyModelVariable with the data from the specified request and
-     * stores the data in the database.
-     *
-     * @param  DummyRequestClass $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(DummyRequestClass $request)
-    {
-        if (\Gate::denies('create', DummyModelClass::class)) {
-            abort(403);
-        }
-
-        $DummyModelVariable = DummyModelClass::create($request->all());
-
-        return response()->json($DummyModelVariable, empty($DummyModelVariable) ? 500 : 200);
-    }
-
-    /**
-     * Update the specified DummyModelVariable with the specified request data in the database.
-     *
-     * @param DummyRequestClass $request
-     * @param DummyModelClass $DummyModelVariable
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(DummyRequestClass $request, DummyModelClass $DummyModelVariable)
-    {
-        if (\Gate::denies('update', $DummyModelVariable)) {
-            abort(403);
-        }
-
-        if ($DummyModelVariable->update($request->all())) {
-            return response()->json($DummyModelVariable);
-        }
-
-        return response()->json($DummyModelVariable, 500);
-    }
-
-    /**
-     * Remove the specified DummyModelVariable from the database.
-     *
-     * @param  \DummyFullModelClass  $DummyModelVariable
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy(DummyModelClass $DummyModelVariable)
-    {
-        if (\Gate::denies('delete', $DummyModelVariable)) {
-            abort(403);
-        }
-
-        if ($DummyModelVariable->delete()) {
-            return response()->json($DummyModelVariable);
-        }
-
-        return response()->json($DummyModelVariable, 500);
-    }
-
 }
-

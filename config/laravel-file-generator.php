@@ -16,18 +16,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Path to the application's web routes file
-    |--------------------------------------------------------------------------
-    |
-    | The path to the web routes file. Necessary for the Artisan "make:resource" command to insert the
-    | resource routes to the web routes file.
-    |
-    */
-
-    'web_routes_file_path' => base_path('routes/web.php'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Path to the application's policies provider class
     |--------------------------------------------------------------------------
     |
