@@ -8,13 +8,13 @@ to your personal needs and to generate fully implemented php classes (controller
 
 ## Requirements
 - [PHP](https://php.net) >=7.0.0
-- An existing >= [Laravel 5.5](https://laravel.com/docs/master/installation) project
+- An existing >= [Laravel 5.5](https://laravel.com/docs/master/installation) project (For Laravel 5.4 see version 1.0)
 
-Note: For Laravel 5.4 see version 1.0
+For the latest command options as described in the Wiki of this package use the latest Laravel version.
 
 ## Installation
 
-1. To get started, install the package via the Composer package manager: 
+1. To get started, install the package via the Composer package manager:
 
     ```bash
     composer require ferdinandfrank/laravel-file-generator
@@ -30,7 +30,7 @@ Note: For Laravel 5.4 see version 1.0
      ]
      ```
    
-3. Add the following entry to your providers array in `config/app.php`:
+3. The package should be auto-discovered by Laravel. For manual registration, add the following entry to your providers array in `config/app.php`:
     
     ```php
     'providers' => [
@@ -43,21 +43,21 @@ Note: For Laravel 5.4 see version 1.0
 That's it!
     
 ## Usage
-You can use the Artisan make commands provided by your Laravel application like always.
-For example, just execute the following command to create a new controller class with the name `UserController`:
+You can use the Artisan make commands provided by your Laravel application as always. This package is just an extension to provide more options and the flexibility to specify your own stub files.
+For example, just execute the following command to create a new controller class with the name `UserController` but with your custom specified stub file (if one exist):
 
     php artisan make:controller UserController
     
 For more details as well as a list of all available commands have a look at the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki).    
     
 ### Publishing stub files    
-To have the full benefits of this package you can execute the following command. This will publish all the stub
+To have the full benefits of this package you can execute the following command to publish all the stub
 files which are used to create the php files when executing an Artisan make command.
 
     php artisan vendor:publish --tag=stubs
     
 By default the stub files will be copied to the `resources\stubs` folder of your application. As soon as you call
-an Artisan make command after you executed this publishing command for the stubs the stub files for generating
+an Artisan make command after you executed this publishing command the stub files for generating
 a new php file will be used as the template from this folder. To modify the path to your stubs file have a look
 on the next section 'Configuration'.
 
@@ -71,8 +71,6 @@ This command will generate the file `laravel-file-generator.php` within your con
 
 ## Commands
 You can see all details and documentation about the available make commands on the [wiki of this package](https://github.com/ferdinandfrank/laravel-file-generator/wiki). 
-
-**Important:** Laravel's native command `make:resource` is represented by the command `make:api-resource` in this package.
 
 ## License
 [MIT](LICENSE)
