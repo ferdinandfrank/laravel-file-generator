@@ -17,7 +17,7 @@ Note: For Laravel 5.4 see version 1.0
 1. To get started, install the package via the Composer package manager: 
 
     ```bash
-    composer require ferdinandfrank/laravel-file-generator
+    composer require ferdinandfrank/laravel-file-generator --dev
     ```
 2. Replace the entry ` Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class` within your providers array in `config/app.php`:
  
