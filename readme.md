@@ -3,6 +3,8 @@
 [![Packagist](https://img.shields.io/packagist/dt/ferdinandfrank/laravel-file-generator.svg)](https://github.com/ferdinandfrank/laravel-file-generator)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> :warning: This repository has been archived since the functionality of the package is now natively supported by Laravel 7. [See the Laravel 7 changelog for details](https://laravel.com/docs/7.x/releases#laravel-7).
+
 This package is an easy extension of the Artisan make commands provided by your Laravel application to have the ability to modify the command's stubs 
 to your personal needs and to generate fully implemented php classes (controller, requests, policies, etc.) for a specified model.
 
